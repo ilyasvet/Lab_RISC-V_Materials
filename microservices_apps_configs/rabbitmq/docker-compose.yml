@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  rabbitmq:
+    image: riscv64/rabbitmq:3-management
+    hostname: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=user1
+      - RABBITMQ_DEFAULT_PASS=rtyopu
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit log_levels [{connection,error},{default,error}] disk_free_limit 2147483648
+    volumes:
+      - ./rabbitmq/var/lib/rabbitmq
+    ports:
+      - 8080:15672
+      - 5672:5672
